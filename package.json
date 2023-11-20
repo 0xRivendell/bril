@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bytekode/intents": "^0.1.4",
     "@dynamic-labs/ethereum": "^0.19.1",
     "@dynamic-labs/ethers-v5": "^0.19.1",
     "@dynamic-labs/sdk-react-core": "^0.19.1",
+    "@fontsource/major-mono-display": "^5.0.17",
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",

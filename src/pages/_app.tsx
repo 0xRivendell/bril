@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app'
 import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core'
 import { EthereumWalletConnectors } from '@dynamic-labs/ethereum'
 
+import '@fontsource/major-mono-display'
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <DynamicContextProvider settings={{
