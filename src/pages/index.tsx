@@ -14,9 +14,17 @@ const Home: NextPage = () => {
 				</div>
 			</div>
 			{/* body */}
-			<div>
-				
+			<div className='px-8 py-8 space-y-4'>
+				<div className='flex items-center justify-center'>
+					<h1 className='text-center font-mono text-9xl'>bril</h1>
+				</div>
+				<div className='flex items-center justify-center'>
+					<DynamicWidget />
+				</div>
 			</div>
+			<footer className="fixed inset-x-0 bottom-0 text-center py-16 font-mono">
+            	engineered by <span className='underline'>0xRivendell</span>
+        	</footer>
 		</div>
 	)
 }
