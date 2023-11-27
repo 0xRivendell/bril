@@ -1,7 +1,25 @@
 import { NextPage } from 'next'
 import { DynamicWidget } from '@dynamic-labs/sdk-react-core'
+import { useState } from 'react'
 
 const Home: NextPage = () => {
+	
+	const [isLoggedIntoWallet, setIsLoggedIntoWallet] = useState(false)
+	const [currentResponseTime, setCurrentResponseTime] = useState(0)
+
+	const calculateResponseTime = async () => {
+		const startTime = performance.now()
+		try {
+
+		}
+		catch (error) {
+
+		}
+		const endTime = performance.now()
+		const responseTime = endTime - startTime
+		setCurrentResponseTime(responseTime)
+	}
+
 	return(
 		<div className='bg-cover bg-center h-screen w-screen' style={{ backgroundImage: `url('/bril_background.svg')` }}>
 			{/* horizontal stack */}
