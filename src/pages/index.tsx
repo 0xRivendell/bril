@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import { DynamicWidget, useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { useState } from 'react'
+import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
 	
@@ -30,6 +31,10 @@ const Home: NextPage = () => {
 		const responseTime = endTime - startTime
 		setCurrentResponseTime(responseTime)
 		return responseTime
+	}
+
+	const getTxObjects = async () => {
+		const startTime = performance.now()
 	}
 
 	if(user){
@@ -62,20 +67,30 @@ const Home: NextPage = () => {
 
 	return (
 		<div className='bg-cover bg-center h-screen w-screen font-mono' style={{ backgroundImage: `url('/bril_background.svg')` }}>
-			<div className='px-8 py-4'>
-				<h1>bril.</h1>
-			</div>
-			<div className='flex px-8'>
-				{/* input box + api response goes here */}
-				<div className='flex w-1/2 space-x-4'>
-					<input type="text" className='bg-gray-700'/>
-					<button className='bg-white text-black py-2 px-4'>send</button>
-				</div>
-				{/* user history goes here */}
-				<div>
-
-				</div>
-			</div>
+			<HStack px={[4,8,12]} py={[4]}>
+				<Heading fontFamily={'monospace'} color={'white'}>bril.</Heading>
+				<span>(powered by 0xRivendell)</span>
+			</HStack>
+			<Stack px={[4,8,12]} py={[4]} w="100vw">
+				<HStack align={'baseline'} spacing={8}>
+					<Stack w={'60%'} spacing={4}>
+						<Heading>Compute</Heading>
+						<Input 
+							variant={'fill'} 
+							bgColor={'black'} 
+							opacity={'0.5'} 
+							textColor={'white'}
+							placeholder={'Enter your prompt here...'}
+							value={currPrompt}
+							onChange={(e) => setCurrPrompt(e.target.value)}
+						/>
+						<Button>compute</Button>
+					</Stack>
+					<Stack>
+						<Heading>History</Heading>
+					</Stack>
+				</HStack>
+			</Stack>
 		</div>
 	)
 }
