@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { DynamicWidget, useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { useState } from 'react'
 import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
+import { Intents } from '@bytekode/intents'
 
 const Home: NextPage = () => {
 	
@@ -9,6 +10,7 @@ const Home: NextPage = () => {
 	const [currentResponseTime, setCurrentResponseTime] = useState(0)
 
 	const [currPrompt, setCurrPrompt] = useState('')
+	const [currAddress, setCurrAddress] = useState('')
 
 	const { 
 		connectedWallets, 
@@ -34,7 +36,23 @@ const Home: NextPage = () => {
 	}
 
 	const getTxObjects = async () => {
+		
 		const startTime = performance.now()
+		const intents = new Intents('test-api-key')
+
+		try {
+			const txObjects = await intents.getTransaction(
+				'0x01', 
+				currPrompt, 
+				`0x9e58a68dCE4AE01947FC568feECD1dDc7838DC69`
+			)
+			console.log(txObjects)
+		}
+		catch(err){
+			console.log(err)
+		}
+		const endTime = performance.now()
+		console.log(endTime - startTime)
 	}
 
 	if(user){
@@ -84,7 +102,7 @@ const Home: NextPage = () => {
 							value={currPrompt}
 							onChange={(e) => setCurrPrompt(e.target.value)}
 						/>
-						<Button>compute</Button>
+						<Button onClick={getTxObjects}>compute</Button>
 					</Stack>
 					<Stack>
 						<Heading>History</Heading>
