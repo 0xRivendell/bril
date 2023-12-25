@@ -69,45 +69,58 @@ const Home: NextPage = () => {
 				{/* body */}
 				<div className='px-8 py-8 space-y-4'>
 					<div className='flex items-center justify-center'>
-						<h1 className='text-center font-mono text-9xl'>bril</h1>
+						<h1 className='text-center font-mono text-9xl text-white'>bril</h1>
 					</div>
 					<div className='flex items-center justify-center'>
 						<DynamicWidget />
 					</div>
 				</div>
-				<footer className="fixed inset-x-0 bottom-0 text-center py-16 font-mono">
+				<footer className="fixed inset-x-0 bottom-0 text-center py-16 font-mono text-gray-300">
 					engineered by <span className='underline'>0xRivendell</span>
 				</footer>
 			</div>
 		)
 	}
 
+	// return (
+	// 	<div className='bg-cover bg-center h-screen w-screen font-mono' style={{ backgroundImage: `url('/bril_background.svg')` }}>
+	// 		<HStack px={[4,8,12]} py={[4]}>
+	// 			<Heading fontFamily={'monospace'} color={'white'}>bril.</Heading>
+	// 			<span>(powered by 0xRivendell)</span>
+	// 		</HStack>
+	// 		<Stack px={[4,8,12]} py={[4]} w="100vw">
+	// 			<HStack align={'baseline'} spacing={8}>
+	// 				<Stack w={'60%'} spacing={4}>
+	// 					<Heading>Compute</Heading>
+	// 					<Input 
+	// 						variant={'fill'} 
+	// 						bgColor={'black'} 
+	// 						opacity={'0.5'} 
+	// 						textColor={'white'}
+	// 						placeholder={'Enter your prompt here...'}
+	// 						value={currPrompt}
+	// 						onChange={(e) => setCurrPrompt(e.target.value)}
+	// 					/>
+	// 					<Button onClick={getTxObjects}>compute</Button>
+	// 				</Stack>
+	// 				<Stack>
+	// 					<Heading>History</Heading>
+	// 				</Stack>
+	// 			</HStack>
+	// 		</Stack>
+	// 	</div>
+	// )
+
 	return (
 		<div className='bg-cover bg-center h-screen w-screen font-mono' style={{ backgroundImage: `url('/bril_background.svg')` }}>
-			<HStack px={[4,8,12]} py={[4]}>
-				<Heading fontFamily={'monospace'} color={'white'}>bril.</Heading>
-				<span>(powered by 0xRivendell)</span>
-			</HStack>
-			<Stack px={[4,8,12]} py={[4]} w="100vw">
-				<HStack align={'baseline'} spacing={8}>
-					<Stack w={'60%'} spacing={4}>
-						<Heading>Compute</Heading>
-						<Input 
-							variant={'fill'} 
-							bgColor={'black'} 
-							opacity={'0.5'} 
-							textColor={'white'}
-							placeholder={'Enter your prompt here...'}
-							value={currPrompt}
-							onChange={(e) => setCurrPrompt(e.target.value)}
-						/>
-						<Button onClick={getTxObjects}>compute</Button>
-					</Stack>
-					<Stack>
-						<Heading>History</Heading>
-					</Stack>
-				</HStack>
-			</Stack>
+			<div className='flex justify-center items-center h-full'>
+				<div className='space-y-4'>
+					<h1 style={{ fontFamily: 'Major Mono Display'}} className='text-6xl text-center text-white'>
+						R
+					</h1>
+					<h1 className='text-3xl text-gray-400'>welcome to 0xRivendell</h1>
+				</div>
+			</div>
 		</div>
 	)
 }
