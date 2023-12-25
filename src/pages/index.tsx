@@ -12,8 +12,7 @@ const Home: NextPage = () => {
 	const [currPrompt, setCurrPrompt] = useState('')
 	const [currAddress, setCurrAddress] = useState('')
 
-	const { 
-		connectedWallets, 
+	const {  
 		isAuthenticated, 
 		isFullyConnected, 
 		primaryWallet,
@@ -55,7 +54,7 @@ const Home: NextPage = () => {
 		console.log(endTime - startTime)
 	}
 
-	if(user){
+	if(!user){
 		return(
 			<div className='bg-cover bg-center h-screen w-screen' style={{ backgroundImage: `url('/bril_background.svg')` }}>
 				{/* horizontal stack */}
