@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { DynamicWidget, useDynamicContext } from '@dynamic-labs/sdk-react-core'
+import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { useState } from 'react'
 import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
 import { Intents } from '@bytekode/intents'
@@ -72,7 +72,7 @@ const Home: NextPage = () => {
 						<h1 className='text-center font-mono text-9xl text-white'>bril</h1>
 					</div>
 					<div className='flex items-center justify-center'>
-						<DynamicWidget />
+						<DynamicConnectButton />
 					</div>
 				</div>
 				<footer className="fixed inset-x-0 bottom-0 text-center py-16 font-mono text-gray-300">
@@ -118,7 +118,9 @@ const Home: NextPage = () => {
 					<h1 style={{ fontFamily: 'Major Mono Display'}} className='text-6xl text-center text-white'>
 						R
 					</h1>
-					<h1 className='text-3xl text-gray-400'>welcome to 0xRivendell</h1>
+					<h1 className='text-3xl text-gray-400 text-center'>welcome to 0xRivendell</h1>
+					<p className='text-center'>Curr Network: {network}</p>
+					<p>Address: {primaryWallet?.address}</p>
 				</div>
 			</div>
 		</div>
