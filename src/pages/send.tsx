@@ -1,7 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // will be used for sending and signing transactions
@@ -20,6 +20,13 @@ const Send: NextPage = () => {
   	useEffect(() => {
     	setIsClient(true)
   	}, [])
+      
+    const executeTransaction = useCallback(async () => {
+        // sign and send the transaction
+        const signer = await primaryWallet?.connector.ethers?.getSigner()
+        const txHash = await signer?.sendTransaction(JSON.parse(tx as string))
+        setTxHash(txHash?.hash as string)
+    }, [primaryWallet, tx])
     
     useEffect(() => {
         if(isClient){
@@ -31,15 +38,9 @@ const Send: NextPage = () => {
                 executeTransaction()
             }
         }
-    },  [isAuthenticated])
+    },  [isAuthenticated, isClient, executeTransaction])
 
 
-    const executeTransaction = async () => {
-        // sign and send the transaction
-        const signer = await primaryWallet?.connector.ethers?.getSigner()
-        const txHash = await signer?.sendTransaction(JSON.parse(tx as string))
-        setTxHash(txHash?.hash as string)
-    }
 
     if(isClient){
         return(
