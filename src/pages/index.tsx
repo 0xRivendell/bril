@@ -1,16 +1,17 @@
 import { NextPage } from 'next'
 import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
-import { Intents } from '@bytekode/intents'
+// import { Intents } from '@bytekode/intents'
 
 const Home: NextPage = () => {
 	
-	const [isLoggedIntoWallet, setIsLoggedIntoWallet] = useState(false)
-	const [currentResponseTime, setCurrentResponseTime] = useState(0)
-
-	const [currPrompt, setCurrPrompt] = useState('')
-	const [currAddress, setCurrAddress] = useState('')
+	const [isClient, setIsClient] = useState(false)
+ 
+  	useEffect(() => {
+    	setIsClient(true)
+  	}, [])
+	
 
 	const {  
 		isAuthenticated, 
@@ -20,111 +21,35 @@ const Home: NextPage = () => {
 		user
 	} = useDynamicContext()
 
-	const calculateResponseTime = async () : Promise<number> => {
-		const startTime = performance.now()
-		try {
-
-		}
-		catch (error) {
-
-		}
-		const endTime = performance.now()
-		const responseTime = endTime - startTime
-		setCurrentResponseTime(responseTime)
-		return responseTime
-	}
-
-	const getTxObjects = async () => {
-		
-		const startTime = performance.now()
-		const intents = new Intents('test-api-key')
-
-		try {
-			const txObjects = await intents.getTransaction(
-				'0x01', 
-				currPrompt, 
-				`0x9e58a68dCE4AE01947FC568feECD1dDc7838DC69`
-			)
-			console.log(txObjects)
-		}
-		catch(err){
-			console.log(err)
-		}
-		const endTime = performance.now()
-		console.log(endTime - startTime)
-	}
-
-	if(!user){
-		return(
-			<div className='bg-cover bg-center h-screen w-screen' style={{ backgroundImage: `url('/bril_background.svg')` }}>
-				{/* horizontal stack */}
-				<div className='flex justify-between px-8 py-8'>
-					<div className='flex items-center space-x-4'>
-						<h1 style={{ fontFamily: 'Major Mono Display'}} className='text-6xl'>
-							R
-						</h1>
-						<p className='text-3xl font-mono'>0xRivendell</p>
-					</div>
-				</div>
-				{/* body */}
-				<div className='px-8 py-8 space-y-4'>
-					<div className='flex items-center justify-center'>
-						<h1 className='text-center font-mono text-9xl text-white'>bril</h1>
-					</div>
-					<div className='flex items-center justify-center'>
-						<DynamicConnectButton />
-					</div>
-				</div>
-				<footer className="fixed inset-x-0 bottom-0 text-center py-16 font-mono text-gray-300">
-					engineered by <span className='underline'>0xRivendell</span>
-				</footer>
-			</div>
+	if(isClient){
+		return (
+			<Stack w={'100vw'} h={'100vh'} bgColor={'black'} align={'center'} justify={'center'}>
+				<Stack>
+					<Heading color={'white'} fontFamily={'Major Mono Display'} fontSize={'6xl'}>R</Heading>
+					<Text color={'white'} fontFamily={'monospace'}>Welcome to 0xRivendell</Text>
+					{
+						user ? (
+							<Stack>
+								<Text>Welcome {user.email}</Text>
+							</Stack>
+						) : 
+						(
+							<>
+								<Button >
+									<DynamicConnectButton>
+										Get Started
+									</DynamicConnectButton>
+								</Button>
+							</>
+						)
+					}
+					
+				</Stack>
+			</Stack>
 		)
 	}
 
-	// return (
-	// 	<div className='bg-cover bg-center h-screen w-screen font-mono' style={{ backgroundImage: `url('/bril_background.svg')` }}>
-	// 		<HStack px={[4,8,12]} py={[4]}>
-	// 			<Heading fontFamily={'monospace'} color={'white'}>bril.</Heading>
-	// 			<span>(powered by 0xRivendell)</span>
-	// 		</HStack>
-	// 		<Stack px={[4,8,12]} py={[4]} w="100vw">
-	// 			<HStack align={'baseline'} spacing={8}>
-	// 				<Stack w={'60%'} spacing={4}>
-	// 					<Heading>Compute</Heading>
-	// 					<Input 
-	// 						variant={'fill'} 
-	// 						bgColor={'black'} 
-	// 						opacity={'0.5'} 
-	// 						textColor={'white'}
-	// 						placeholder={'Enter your prompt here...'}
-	// 						value={currPrompt}
-	// 						onChange={(e) => setCurrPrompt(e.target.value)}
-	// 					/>
-	// 					<Button onClick={getTxObjects}>compute</Button>
-	// 				</Stack>
-	// 				<Stack>
-	// 					<Heading>History</Heading>
-	// 				</Stack>
-	// 			</HStack>
-	// 		</Stack>
-	// 	</div>
-	// )
-
-	return (
-		<div className='bg-cover bg-center h-screen w-screen font-mono' style={{ backgroundImage: `url('/bril_background.svg')` }}>
-			<div className='flex justify-center items-center h-full'>
-				<div className='space-y-4'>
-					<h1 style={{ fontFamily: 'Major Mono Display'}} className='text-6xl text-center text-white'>
-						R
-					</h1>
-					<h1 className='text-3xl text-gray-400 text-center'>welcome to 0xRivendell</h1>
-					<p className='text-center'>Curr Network: {network}</p>
-					<p>Address: {primaryWallet?.address}</p>
-				</div>
-			</div>
-		</div>
-	)
+	return (<>Loading...</>)
 }
 
 export default Home
