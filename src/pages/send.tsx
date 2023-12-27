@@ -45,7 +45,7 @@ const Send: NextPage = () => {
     if(isClient){
         return(
             <Stack bgColor={'black'} h={'100vh'} w={'100vw'}>
-                You're authenticated too
+                {`You're authenticated too`}
                 {
                     txHash && (
                         <Text>{txHash}</Text>
