@@ -56,6 +56,36 @@ const evmNetworks = [
     rpcUrls: ['https://polygon-rpc.com'],    
     vanityName: 'Polygon',
   },
+  {
+    blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
+    chainId: 80001,
+    chainName: 'Matic Mumbai',
+    iconUrls: ["https://app.dynamic.xyz/assets/networks/polygon.svg"],
+    name: 'Mumbai',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'MATIC',
+      symbol: 'MATIC',
+    },
+    networkId: 137,
+    rpcUrls: ['https://polygon-mumbai-bor.publicnode.com'],    
+    vanityName: 'Mumbai',
+  },
+  // {
+  //   blockExpolorerUrls: ['https://mumbai.polygonscan.com/'],
+  //   chainId: 80001,
+  //   chainName: 'Mumbai',
+  //   iconUrls: ["https://app.dynamic.xyz/assets/networks/polygon.svg"],
+  //   name: 'Polygon Mumbai',
+  //   nativeCurrency: {
+  //     decimals: 18,
+  //     name: 'MATIC',
+  //     symbol: 'MATIC',
+  //   },
+  //   networkId: 80001,
+  //   rpcUrls: ['https://polygon-mumbai-bor.publicnode.com'],
+  //   vanityName: 'Mumbai',
+  // }
 ]
 
 export default function App({ Component, pageProps }: AppProps) {
