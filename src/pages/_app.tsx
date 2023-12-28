@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 
-import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core'
+import { DynamicContextProvider, EvmNetwork } from '@dynamic-labs/sdk-react-core'
 import { EthersExtension } from '@dynamic-labs/ethers-v5'
 
 import { ChakraProvider } from '@chakra-ui/react'
@@ -8,7 +8,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import '@fontsource/major-mono-display'
 import { EthereumWalletConnectors } from '@dynamic-labs/ethereum'
 
-const evmNetworks = [
+const evmNetworks: EvmNetwork[] = [
   {
     blockExplorerUrls: ['https://etherscan.io/'],
     chainId: 1,
@@ -71,6 +71,51 @@ const evmNetworks = [
     rpcUrls: ['https://polygon-mumbai-bor.publicnode.com'],    
     vanityName: 'Mumbai',
   },
+  {
+    blockExplorerUrls: ['https://basescan.com/'],
+    chainId: 8453,
+    chainName: 'Base',
+    iconUrls: ["https://app.dynamic.xyz/assets/networks/base.svg"],
+    name: 'Base',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'BASE',
+      symbol: 'BASE',
+    },
+    networkId: 8453,
+    rpcUrls: ['https://base.publicnode.com'],    
+    vanityName: 'Base',
+  },
+  {
+    blockExplorerUrls: ['https://goerli.basescan.com/'],
+    chainId: 84531,
+    chainName: 'Base Goerli',
+    iconUrls: ["https://app.dynamic.xyz/assets/networks/base.svg"],
+    name: 'Base Goerli',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'BASE',
+      symbol: 'BASE',
+    },
+    networkId: 84531,
+    rpcUrls: ['https://base-goerli.publicnode.com'],    
+    vanityName: 'Base Goerli',
+  },
+  {
+    blockExplorerUrls: ['https://sepolia.basescan.com/'],
+    chainId: 84532,
+    chainName: 'Base Sepolia',
+    iconUrls: ["https://app.dynamic.xyz/assets/networks/base.svg"],
+    name: 'Base Sepolia',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'BASE',
+      symbol: 'BASE',
+    },
+    networkId: 84531,
+    rpcUrls: ['https://sepolia.base.org'],    
+    vanityName: 'Base Sepolia',
+  },
   // {
   //   blockExpolorerUrls: ['https://mumbai.polygonscan.com/'],
   //   chainId: 80001,
@@ -95,7 +140,7 @@ export default function App({ Component, pageProps }: AppProps) {
         environmentId: `5229c94a-82e8-4fc6-b2ad-8afca1e656e4`,
         walletConnectors: [EthereumWalletConnectors],
         walletConnectorExtensions: [EthersExtension],
-        evmNetworks
+        // evmNetworks
       }}
     >
       <ChakraProvider>
