@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
-import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
-import { useEffect, useState } from 'react'
+import { useDynamicContext, useEmbeddedWallet } from '@dynamic-labs/sdk-react-core'
+import { use, useEffect, useState } from 'react'
 import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
 // import { Intents } from '@bytekode/intents'
 
@@ -18,8 +18,24 @@ const Home: NextPage = () => {
 		isFullyConnected, 
 		primaryWallet,
 		network,
-		user
+		user,
+		setShowAuthFlow
 	} = useDynamicContext()
+
+	const { createEmbeddedWallet, userHasEmbeddedWallet } = useEmbeddedWallet()
+
+	const auth = async () => {
+		const wallet = await createEmbeddedWallet()
+		console.log(wallet)
+	}
+
+	useEffect(() => {
+		if(isAuthenticated){
+			if(!userHasEmbeddedWallet()){
+				auth()
+			}
+		}
+	}, [isAuthenticated])
 
 	if(isClient){
 		return (
@@ -35,10 +51,8 @@ const Home: NextPage = () => {
 						) : 
 						(
 							<>
-								<Button >
-									<DynamicConnectButton>
+								<Button onClick={() => setShowAuthFlow(true)}>
 										Get Started
-									</DynamicConnectButton>
 								</Button>
 							</>
 						)
