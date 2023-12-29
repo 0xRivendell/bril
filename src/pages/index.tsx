@@ -2,10 +2,15 @@ import { NextPage } from 'next'
 import { useDynamicContext, useEmbeddedWallet } from '@dynamic-labs/sdk-react-core'
 import { use, useEffect, useState } from 'react'
 import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 // import { Intents } from '@bytekode/intents'
 
 const Home: NextPage = () => {
 	
+	// extract chatId from the url params
+    const router = useRouter()
+    const chatId = router.query.chatId
+
 	const [isClient, setIsClient] = useState(false)
  
   	useEffect(() => {
@@ -19,13 +24,15 @@ const Home: NextPage = () => {
 		primaryWallet,
 		network,
 		user,
-		setShowAuthFlow
+		setShowAuthFlow,
+		handleLogOut
 	} = useDynamicContext()
 
 	const { createEmbeddedWallet, userHasEmbeddedWallet } = useEmbeddedWallet()
 
 	const auth = async () => {
 		const wallet = await createEmbeddedWallet()
+		// hit api to add new user to supabase db
 		console.log(wallet)
 	}
 
@@ -47,6 +54,7 @@ const Home: NextPage = () => {
 						user ? (
 							<Stack>
 								<Text>Welcome {user.email}</Text>
+								<Button onClick={handleLogOut}>logout</Button>
 							</Stack>
 						) : 
 						(
