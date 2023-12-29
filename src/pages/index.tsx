@@ -3,6 +3,7 @@ import { useDynamicContext, useEmbeddedWallet } from '@dynamic-labs/sdk-react-co
 import { use, useEffect, useState } from 'react'
 import { HStack, Heading, Stack, VStack, Text, Input, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import { supabase } from '@/config/supabase'
 // import { Intents } from '@bytekode/intents'
 
 const Home: NextPage = () => {
@@ -32,7 +33,15 @@ const Home: NextPage = () => {
 
 	const auth = async () => {
 		const wallet = await createEmbeddedWallet()
+		
 		// hit api to add new user to supabase db
+		const { data, error } = await supabase
+  										.from('test')
+  										.insert([
+    										{ chat_id: parseInt(chatId as string), wallet_address: wallet?.address },
+  										])
+  										.select()
+		console.log(data, error)
 		console.log(wallet)
 	}
 
